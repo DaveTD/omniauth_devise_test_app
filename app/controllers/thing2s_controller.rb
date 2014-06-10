@@ -36,11 +36,6 @@ class Thing2sController < ApplicationController
       redirect_to user_home_path
     end
     # check current user to get id
-    if !(current_user.type.thing_id.nil?)
-      @thing = current_user.type.thing 
-      @thing.destroy!
-      current_user.type.update_attributes(:thing => nil)
-    end
     redirect_to user_home_path
   end
 

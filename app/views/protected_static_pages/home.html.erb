@@ -3,9 +3,10 @@
 <p>Logged in as: <%= p "#{@currentuser.email}" %></p>
 <p>Session: <%= p "#{@user_session}" %></p>
 <p>User signed in: <%= p "#{@user_signed_in}" %></p>
+<% if @currentuser.type === "UserType1" %>
 <p>Thing ID: <%= p "#{@currentuser.type.thing_id}" %></p>
 <p>Thing Type: <%= p "#{@currentuser.type.thing_type}" %></p>
-
+<% end %>
 
 <p>For user type 1s only (type 2s will get an error page)</p>
 <%= link_to "Create thing 1", thing1_create_path %>

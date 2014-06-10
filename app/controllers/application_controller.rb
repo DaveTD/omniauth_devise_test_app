@@ -3,9 +3,12 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  #rescue_from CanCan::AccessDenied do |exception|
-  #  redirect_to root_path, :alert => exception.message
-  #end
+  rescue_from CanCan::AccessDenied do |exception|
+    if current_user.nil?
+    redirect_to root_path, :alert => exception.message
+    end
+    redirect_to user_home_path, :alert => exception.message
+  end
 
   def after_sign_in_path_for(user)
     user_home_path

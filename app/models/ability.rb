@@ -13,6 +13,7 @@ class Ability
     can :create_from_twitter, :user_type1
     can :create_from_facebook, :user_type1
     can :create, :user_type1
+    can :create, :user_type2
     can :new_type1, :user
     can :new_type2, :user
 

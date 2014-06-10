@@ -60,22 +60,12 @@ class UserType1sController < ApplicationController
 
   private
     def user_type1_params
-      #params.require(:user_type1).permit( 
-      #  :name, 
-      #  :location, 
-      #  :twitter_uid, 
-      #  :facebook_uid, 
-      #  users_attributes: [:id, :email, :password, :type_id, :type_type]
-      #)
-      params.permit( 
+      params.require(:user_type1).permit( 
         :name, 
         :location, 
         :twitter_uid, 
         :facebook_uid, 
-        :thing_id,
-        :thing_type,
-        users_attributes: [:id, :email, :password, :type_id, :type_type],
-        thing1_attributes: [:id, :thing_name, :thing_description, :thing_stat, :thing_other_stat, :thing_occurrance_date]
+        users_attributes: [:id, :email, :password, :type_id, :type_type]
       )
     end
 
