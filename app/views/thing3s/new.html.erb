@@ -1,0 +1,10 @@
+<h1>Create Thing 3</h1>
+<%= form_for(@thing) do |f| %>
+  <%= f.label :thing_name %>
+  <%= f.text_field :thing_name %>
+  </br>
+  <%= f.label :thing_description %>
+  <%= f.text_field :thing_description %>
+  </br>
+  <%= f.submit %>
+<% end %>

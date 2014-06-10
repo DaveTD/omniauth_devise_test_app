@@ -1,0 +1,18 @@
+<h1>Form for creating user type 2</h1>
+
+<%= form_for(@user_type2) do |f| %>
+  <!-- This stuff is for the user class -->
+  <%= f.fields_for :users do |uf| %>
+    <%= uf.label :email %>
+    <%= uf.text_field :email %>
+    </br>
+    <%= uf.label :encrypted_password %>
+    <%= uf.password_field :encrypted_password %>
+    </br>
+  <% end %>
+  <!-- And this stuff is for the user type 2 class -->
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  <br>
+  <%= f.submit "Create with email address" %>
+<% end %>

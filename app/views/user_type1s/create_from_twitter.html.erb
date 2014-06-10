@@ -1,0 +1,25 @@
+<h1>Create new user from Twitter</h1>
+<p>We don't appear to have a user for that twitter account - create one here!</p>
+
+<%= form_for(@user_type1) do |f| %>
+  <!-- This stuff is for the user class -->
+  <%= f.fields_for :users do |uf| %>
+    <%= uf.label :email %>
+    <%= uf.text_field :email %>
+    </br>
+    <%= uf.label :encrypted_password %>
+    <%= uf.password_field :encrypted_password %>
+    </br>
+  <% end %>
+  <!-- And this stuff is for the user type 1 class -->
+  <%= f.label :name %>
+  <%= f.text_field :name, value: session["devise.twitter_data"]["name"] %>
+  </br>
+  <%= f.label :location %>
+  <%= f.text_field :location, value: session["devise.twitter_data"]["location"] %>
+  </br>
+  <%= f.label :twitter_uid %>
+  <%= f.text_field :twitter_uid, :readonly => true, value: session["devise.twitter_data"]["uid"] %>
+  </br>
+  <%= f.submit "Create User" %>
+<% end %>  

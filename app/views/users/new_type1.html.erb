@@ -1,0 +1,24 @@
+<h1>Form to create a new user of type 1</h1>
+
+<%= form_for(@user_type1) do |f| %>
+  <!-- This stuff is for the user class -->
+  <%= f.fields_for :users do |uf| %>
+    <%= uf.label :email %>
+    <%= uf.text_field :email %>
+    </br>
+    <%= uf.label :encrypted_password %>
+    <%= uf.password_field :encrypted_password %>
+    </br>
+  <% end %>
+  <!-- And this stuff is for the user type 1 class -->
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </br>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  </br>
+  <%= f.submit "Create with email address" %>
+<% end %>  
+<h2>OR create your account with...</h2>
+<%= link_to "Create from Twitter", "/users/auth/twitter/" %>
+<%= link_to "Create from Facebook", "/users/auth/facebook/" %>
