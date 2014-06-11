@@ -23,6 +23,7 @@ class UserType1sController < ApplicationController
     @user_type1 = UserType1.new(user_type1_params)
     
     @user = @user_type1.build_user(:email => params["user_type1"]["users"]["email"], :password => params["user_type1"]["users"]["encrypted_password"])
+    @user_type1.update_attributes(:user => @user)
 
     if @user.valid? && @user_type1.valid?
       p ">>> Saving User..."
