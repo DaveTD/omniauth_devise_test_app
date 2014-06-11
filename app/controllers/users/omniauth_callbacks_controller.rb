@@ -20,7 +20,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
     else
-      session["devise.facebook_data"] = env["omniauth.auth"]["info"].to_hash.merge( :uid => env["omniauth.auth"].uid )
+      session["devise.facebook_data"] = env["omniauth.auth"]["info"].to_hash.merge( :uid => env["omniauth.auth"].uid, :email => env["omniauth.auth"].email )
       redirect_to create_from_facebook_path
     end
   end

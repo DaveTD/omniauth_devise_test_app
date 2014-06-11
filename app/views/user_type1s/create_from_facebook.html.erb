@@ -1,1 +1,26 @@
 <h1>Create new user from Facebook</h1>
+
+<p>We don't appear to have a user for that facebook account - create one here!</p>
+
+<%= form_for(@user_type2) do |f| %>
+  <!-- This stuff is for the user class -->
+  <%= f.fields_for :users do |uf| %>
+    <%= uf.label :email %>
+    <%= uf.text_field :email, value: session["devise.facebook_data"]["email"] %>
+    </br>
+    <%= uf.label :encrypted_password %>
+    <%= uf.password_field :encrypted_password %>
+    </br>
+  <% end %>
+  <!-- And this stuff is for the user type 1 class -->
+  <%= f.label :name %>
+  <%= f.text_field :name, value: session["devise.facebook_data"]["name"] %>
+  </br>
+  <%= f.label :location %>
+  <%= f.text_field :location, value: session["devise.facebook_data"]["location"] %>
+  </br>
+  <%= f.label :facebook_uid %>
+  <%= f.text_field :facebook_uid, :readonly => true, value: session["devise.facebook_data"]["uid"] %>
+  </br>
+  <%= f.submit "Create User" %>
+<% end %>  

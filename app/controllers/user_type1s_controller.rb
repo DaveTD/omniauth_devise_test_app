@@ -14,7 +14,9 @@ class UserType1sController < ApplicationController
   end
 
   def create_from_facebook
-
+    @user = User.new
+    @user_type1 = UserType1.new
+    @auth = session["devise.facebook_data"]
   end
 
   def create 
@@ -35,9 +37,13 @@ class UserType1sController < ApplicationController
       end
     end
   end
+
+  def index
+    @usertype1s = UserType1.all
+  end
   
-  def read
-    @user_type1 = UserType1.find(params[:id])
+  def show
+    @usertype1 = UserType1.find(params[:id])
   end
 
   def update

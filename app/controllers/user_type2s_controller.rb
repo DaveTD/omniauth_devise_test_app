@@ -7,7 +7,6 @@ class UserType2sController < ApplicationController
   end
 
   def create
-    p ">>>>>> HERE!!!!! >>>>>>>"
     @user_type2 = UserType2.new(user_type2_params)
 
     @user = @user_type2.build_user(:email => params["user_type2"]["users"]["email"], :password => params["user_type2"]["users"]["encrypted_password"])
