@@ -1,12 +1,18 @@
 <h1>Polymorphic User Devise/Omniauth/Cancan Test</h1>
 
-<p>Logged in as: <%= p "#{@currentuser.email}" %></p>
+<p>Logged in as: <%= link_to "#{@currentuser.email}", users_path + "/#{@currentuser.id}" %></p>
 <p>Session: <%= p "#{@user_session}" %></p>
 <p>User signed in: <%= p "#{@user_signed_in}" %></p>
-<% if @currentuser.type === "UserType1" %>
+<% if @currentuser.type_type == "UserType1" %>
 <p>Thing ID: <%= p "#{@currentuser.type.thing_id}" %></p>
 <p>Thing Type: <%= p "#{@currentuser.type.thing_type}" %></p>
 <% end %>
+</br>
+<%= link_to "Index Users", users_path %>
+</br>
+<%= link_to "Index UserType1s", user_type1s_path %>
+</br>
+<%= link_to "Index UserType2s", user_type2s_path %>
 
 <p>For user type 1s only (type 2s will get an error page)</p>
 <%= link_to "Create thing 1", thing1_create_path %>
@@ -16,5 +22,5 @@
 <%= link_to "Create thing 3", thing3_create_path %>
 </br>
 <%= link_to "DESTROY MY THING", thing_destroy_path %>
-</br>
+</br></br>
 <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>

@@ -12,8 +12,12 @@ class UsersController < ApplicationController
     @user_type2 = UserType2.new
   end
 
-  def read
+  def show
     @user = User.find(params[:id])
+  end
+
+  def index
+    @users = User.all
   end
 
   def update

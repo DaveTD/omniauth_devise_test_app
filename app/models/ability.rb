@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
     user ||= User.new # guest user (not logged in)
 
-    alias_action :create, :read, :update, :destroy, :new, :show, :index, :to => :incruds
+    alias_action :create, :update, :destroy, :new, :show, :index, :to => :incuds
     alias_action :create, :new, :update, :destroy, :to => :private_actions
     alias_action :read, :show, :index, :to => :public_actions
 
@@ -26,6 +26,10 @@ class Ability
        
       can :public_actions, [:thing1, :thing2, :thing3] 
       can :private_actions, [:thing1, :thing2, :thing3] # Set user ID
+
+      #can :incuds, :user if (:id == user.id)
+      can :manage, :user 
+      
 
     when "UserType2"
       can :manage, :user_type2
