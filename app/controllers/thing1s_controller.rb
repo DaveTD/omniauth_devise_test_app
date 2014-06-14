@@ -16,7 +16,7 @@ class Thing1sController < ApplicationController
     redirect_to user_home_path
   end
   
-  def read
+  def show
     # Check userid from params
   end
 

@@ -16,7 +16,7 @@ class Thing3sController < ApplicationController
     redirect_to user_home_path
   end
 
-  def read
+  def show
   end
 
   def update
