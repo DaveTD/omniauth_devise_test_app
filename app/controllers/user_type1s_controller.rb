@@ -47,10 +47,31 @@ class UserType1sController < ApplicationController
     @usertype1 = UserType1.find(params[:id])
   end
 
+  def edit
+    @usertype1 = UserType1.find(params[:id])
+  end
+
   def update
-    @user_type1 = UserType1.find(params[:id])
-    @user_type1.update!(user_params)
+    @usertype1 = UserType1.find(params[:id])
+    @usertype1.update!(user_type1_params)
     redirect_to user_home_path
+  end
+
+  def add_twitter_uid
+    
+  end
+
+  def add_facebook_uid
+  end
+
+  def destroy_twitter
+    current_user.type.update_attributes(:twitter_uid => nil)
+    redirect_to user_update_path
+  end
+
+  def destroy_facebook
+    current_user.type.update_attributes(:facebook_uid => nil)
+    redirect_to user_update_path
   end
 
   def destroy_thing

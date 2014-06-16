@@ -4,14 +4,16 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # raise request.env["omniauth.auth"].to_yaml 
     @user = User.find_for_twitter_oauth(request.env["omniauth.auth"]) 
     if @user && @user.persisted?
-      p ">>> signing in: #{ @user.email }"
       sign_in_and_redirect @user
-      # redirect_to root_path
     else
       session["devise.twitter_data"] = env["omniauth.auth"]["info"].to_hash.merge( "uid" => env["omniauth.auth"].uid )
+      # If there is a user currently signed in with no twitter account associated with it, we must be adding this twitter to that account
+      if (current_user && current_user.type.twitter_uid.nil?) 
+        redirect_to '/add_twitter_uid' 
+      end
+      # Otherwise, create a new account from the twitter account
       redirect_to '/create_from_twitter'
     end
-
   end
 
   def facebook

@@ -25,7 +25,11 @@ class UserType2sController < ApplicationController
 
   end
 
-  def read
+  def show
+    @usertype2 = UserType2.find(params[:id])
+  end
+
+  def edit
   end
 
   def update

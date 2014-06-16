@@ -1,5 +1,5 @@
 <h1>Index of User Type 2s</h1>
 
 <% @usertype2s.each do |t| %>
-  <p><a href="<%= p t.id %>"><%= p "Name: #{t.location}" %></a></p>
+  <p><%= link_to "Name: #{t.name}", user_type2s_path + "/#{t.id}" %></p>
 <% end %>

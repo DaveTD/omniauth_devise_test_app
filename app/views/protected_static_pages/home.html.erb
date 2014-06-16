@@ -8,6 +8,8 @@
 <p>Thing Type: <%= p "#{@currentuser.type.thing_type}" %></p>
 <% end %>
 </br>
+<%= link_to "Show my UserType1 account", user_type1s_path + "/#{@currentuser.id}" %>
+</br>
 <%= link_to "Index Users", users_path %>
 </br>
 <%= link_to "Index UserType1s", user_type1s_path %>

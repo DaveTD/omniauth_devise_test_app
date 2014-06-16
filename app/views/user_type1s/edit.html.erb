@@ -1,0 +1,17 @@
+<h1>User update page</h1>
+<%= form_for(@usertype1) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  </br>
+  <%= f.label :location %>
+  <%= f.text_field :location %>
+  </br>
+  <%= f.submit "Change me!" %>
+<% end %>
+<% if (@usertype1.twitter_uid.nil?) %>
+  <p>No twitter ID associated with this account.</p>
+  <%= link_to "Add twitter account", "/users/auth/twitter/" %>
+<% else %>
+  <p>Twitter uid: <%= @usertype1.twitter_uid %></p>
+  <%= link_to "Delete associated twitter account", 'destroy_twitter' %>
+<% end %>
