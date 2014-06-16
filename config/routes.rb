@@ -7,6 +7,8 @@ OmniauthDeviseTestApp::Application.routes.draw do
   match '/signup2',  to: 'users#new_type2', via: 'get'
   match '/create_from_twitter', to: 'user_type1s#create_from_twitter', via: 'get'
   match '/create_from_facebook', to: 'user_type1s#create_from_facebook', via: 'get'
+
+  get '/add_twitter_uid', to: 'user_type1s#add_twitter_uid', as: 'add_twitter_uid'
   
   get '/home', to: 'protected_static_pages#home', as:'user_home'
   get '/create_type1', to: 'thing1s#new', as: 'thing1_create'
@@ -14,6 +16,7 @@ OmniauthDeviseTestApp::Application.routes.draw do
   get '/create_type3', to: 'thing3s#new', as: 'thing3_create'
 
   get '/destroy_thing', to: 'user_type1s#destroy_thing', as: 'thing_destroy'
+  get '/destroy_twitter', to: 'user_type1s#destroy_twitter', as: 'destroy_twitter'
 
   resources :users, :user_type1s, :user_type2s, :thing1s, :thing2s, :thing3s
 

@@ -58,20 +58,23 @@ class UserType1sController < ApplicationController
   end
 
   def add_twitter_uid
-    
+    current_user.type.update_attributes(:twitter_uid => session["devise.twitter_data"]["uid"])
+    redirect_to edit_user_type1_path :id => current_user.type.id
   end
 
   def add_facebook_uid
+    current_user.type.update_attributes(:facebook_uid => session["devise.facebook_data"]["uid"])
+    redirect_to edit_user_type1_path :id => current_user.type.id
   end
 
   def destroy_twitter
     current_user.type.update_attributes(:twitter_uid => nil)
-    redirect_to user_update_path
+    redirect_to :back
   end
 
   def destroy_facebook
     current_user.type.update_attributes(:facebook_uid => nil)
-    redirect_to user_update_path
+    redirect_to :back
   end
 
   def destroy_thing

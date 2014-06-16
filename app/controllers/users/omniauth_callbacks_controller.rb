@@ -1,4 +1,5 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+  before_filter :authenticate_user!
 
   def twitter
     # raise request.env["omniauth.auth"].to_yaml 
@@ -10,9 +11,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       # If there is a user currently signed in with no twitter account associated with it, we must be adding this twitter to that account
       if (current_user && current_user.type.twitter_uid.nil?) 
         redirect_to '/add_twitter_uid' 
+      else
+        # Otherwise, create a new account from the twitter account
+        redirect_to '/create_from_twitter'
       end
-      # Otherwise, create a new account from the twitter account
-      redirect_to '/create_from_twitter'
     end
   end
 

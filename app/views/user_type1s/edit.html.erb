@@ -13,5 +13,5 @@
   <%= link_to "Add twitter account", "/users/auth/twitter/" %>
 <% else %>
   <p>Twitter uid: <%= @usertype1.twitter_uid %></p>
-  <%= link_to "Delete associated twitter account", 'destroy_twitter' %>
+  <%= link_to "Delete associated twitter account", destroy_twitter_path %>
 <% end %>
