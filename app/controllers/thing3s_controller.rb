@@ -17,6 +17,11 @@ class Thing3sController < ApplicationController
   end
 
   def show
+    @thing = Thing3.find(params[:id])
+  end
+
+  def index
+    @things = Thing3.all
   end
 
   def update

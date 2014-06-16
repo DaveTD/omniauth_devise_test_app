@@ -18,6 +18,11 @@ class Thing2sController < ApplicationController
 
   def show
     # check userid from params
+    @thing = Thing2.find(params[:id])
+  end
+
+  def index
+    @things = Thing2.all
   end
 
   def update

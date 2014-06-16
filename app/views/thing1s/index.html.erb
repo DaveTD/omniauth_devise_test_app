@@ -1,0 +1,5 @@
+<h1>Thing 1s index</h1>
+
+<% @things.each do |thing| %>
+  <p>Name: <%= link_to thing.thing_name, thing1s_path + "/#{thing.id}" %></p>
+<% end %>

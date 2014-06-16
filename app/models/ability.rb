@@ -2,7 +2,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user_passed ||= User.new # guest user (not logged in)
+    user ||= User.new # guest user (not logged in)
 
     alias_action :create, :update, :destroy, :new, :show, :index, :to => :incuds
     alias_action :create, :new, :update, :destroy, :to => :private_actions
