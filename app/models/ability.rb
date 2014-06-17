@@ -9,30 +9,33 @@ class Ability
     alias_action :read, :show, :index, :to => :public_actions
 
     # public actions
-    can :public_actions, :user_type1
-    can :create_from_twitter, :user_type1
-    can :create_from_facebook, :user_type1
-    can :create, :user_type1
-    can :create, :user_type2
-    can :new_type1, :user
-    can :new_type2, :user
+    can :public_actions, UserType1
+    can :create_from_twitter, UserType1
+    can :create_from_facebook, UserType1
+    can :create, UserType1
+    can :create, UserType2
+    can :new_type1, User
+    can :new_type2, User
 
     case user.type_type
-    when "admin"
+    when "Admin"
       can :manage, :all
     when "UserType1"  
-      can :manage, :user_type1
       can :manage, :protected_static_page
-       
-      can :public_actions, [:thing1, :thing2, :thing3] 
-      can :private_actions, [:thing1, :thing2, :thing3] # Set user ID
+      can :read, UserType1
 
+      can :manage, UserType1 do |u|
+        u == user.type
+      end
       can :manage, User do |u|
         u == user
       end
 
+      can :public_actions, [:thing1, :thing2, :thing3] 
+      can :private_actions, [:thing1, :thing2, :thing3]
+
     when "UserType2"
-      can :manage, :user_type2
+      can :manage, UserType2
       can :manage, :protected_static_page
 
       can :public_actions, [:thing1, :thing2, :thing3]

@@ -1,4 +1,5 @@
 class UserType2sController < ApplicationController
+  load_resource
   include Protector
   skip_before_filter :authenticate_user!, :only => [:create, :new, :read]
 
