@@ -35,7 +35,7 @@ class Thing1sController < ApplicationController
     if current_user.type == "Admin"
       @thing = Thing1.find(params[:id])
       @thing.destroy!
-      @user = UserType1.find_by_things_id(params[:id])
+      @user = UserType1.find_by_thing_id_and_thing_type(params[:id], "Thing1")
       @user.update_attributes(:thing => nil)
       redirect_to user_home_path
     end

@@ -30,9 +30,13 @@ class UserType2sController < ApplicationController
   end
 
   def edit
+    @usertype2 = UserType2.find(params[:id])
   end
 
   def update
+    @usertype2 = UserType2.find(params[:id])
+    @usertype2.update!(user_type2_params)
+    redirect_to user_home_path
   end
 
   private

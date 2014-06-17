@@ -68,8 +68,14 @@ class UserType1sController < ApplicationController
   end
 
   def destroy_twitter
-    current_user.type.update_attributes(:twitter_uid => nil)
-    redirect_to :back
+    if current_user.type == "Admin"
+      @target = UserType1.find(params[:id])
+      @target.update_attributes(:twitter_uid => nil)
+      redirect_to :back
+    else
+      current_user.type.update_attributes(:twitter_uid => nil)
+      redirect_to :back
+    end  
   end
 
   def destroy_facebook
@@ -79,14 +85,15 @@ class UserType1sController < ApplicationController
 
   def destroy_thing
     if current_user.type == "Admin"
-      @target = @user_type1.find(params[:id])
+      @target = UserType1.find(params[:id])
       @target.thing.destroy
       @target.update_attributes(:thing => nil)
+      redirect_to :back
+    else
+      current_user.type.thing.destroy
+      current_user.type.update_attributes(:thing => nil)
       redirect_to user_home_path
-    end    
-    current_user.type.thing.destroy
-    current_user.type.update_attributes(:thing => nil)
-    redirect_to user_home_path
+    end
   end
 
   private
