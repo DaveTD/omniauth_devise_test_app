@@ -1,4 +1,5 @@
 class Thing1sController < ApplicationController
+  load_resource
   include Protector
 
   def new
@@ -17,7 +18,7 @@ class Thing1sController < ApplicationController
   end
   
   def show
-    @thing = Thing1.find(params[:id])
+    #@thing = Thing1.find(params[:id])
   end
 
   def index

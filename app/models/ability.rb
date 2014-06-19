@@ -5,7 +5,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     alias_action :create, :update, :destroy, :new, :read, :to => :crud
-    alias_action :update, :destroy, :to => :private_actions
+    alias_action :show, :update, :destroy, :to => :private_actions
 
     # public actions
     can :public_actions, UserType1
@@ -23,10 +23,10 @@ class Ability
     when "UserType1"  
       can :manage, :protected_static_page
       can :manage, UserType1 do |u|
-        u == user.type
+        user.type == u
       end
       can :manage, User do |u|
-        u == user
+        user == u
       end
       
       can :add_twitter_uid, :user_type1       
@@ -34,14 +34,15 @@ class Ability
       can :destroy_twitter, :user_type1
       can :destroy_facebook, :user_type1
 
-      can :read, [:thing1, :thing2, :thing3] 
-      can :private_actions, [:thing1, :thing2, :thing3]
-      can :crud, [:thing1, :thing2, :thing3]
+      can :index, [:thing1, :thing2, :thing3] 
+      can :private_actions, [Thing1, Thing2, Thing3] do |t|
+        user.type.thing == t        
+      end
 
     when "UserType2"
       can :manage, :protected_static_page
       can :manage, UserType2 do |u|
-        u == user.type
+        user.type == u
       end
 
       can :read, [:thing1, :thing2, :thing3]

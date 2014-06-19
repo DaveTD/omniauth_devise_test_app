@@ -1,4 +1,5 @@
 class Thing2sController < ApplicationController
+  load_resource
   include Protector
 
   def new

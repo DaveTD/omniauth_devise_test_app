@@ -26,14 +26,11 @@ class UserType1sController < ApplicationController
     @user_type1.update_attributes(:user => @user)
 
     if @user.valid? && @user_type1.valid?
-      p ">>> Saving User..."
       @user_type1.save 
       sign_in @user
-      p ">>> Redirecting..."
       redirect_to user_home_path
     else
       @user_type1.errors.full_messages.each do |m|
-        # Log this better.
         p m
       end
     end
@@ -79,8 +76,15 @@ class UserType1sController < ApplicationController
   end
 
   def destroy_facebook
-    current_user.type.update_attributes(:facebook_uid => nil)
-    redirect_to :back
+    if current_user.type == "Admin"
+      @target = UserType1.find(params[:id])
+      @target.update_attributes(:facebook_uid => nil)
+      redirect_to :back
+    else
+      current_user.type.update_attributes(:facebook_uid => nil)
+      redirect_to :back
+    end 
+  
   end
 
   def destroy_thing
