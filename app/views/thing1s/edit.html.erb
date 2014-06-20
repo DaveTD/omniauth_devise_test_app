@@ -1,0 +1,20 @@
+<h1>Edit Thing 1</h1>
+
+<%= form_for(@thing1) do |f| %>
+  <%= f.label :thing_name %>
+  <%= f.text_field :thing_name %>
+  <br>
+  <%= f.label :thing_description %>
+  <%= f.text_field :thing_description %>
+  <br>
+  <%= f.label :thing_stat %>
+  <%= f.text_field :thing_stat %>
+  <br>
+  <%= f.label :thing_other_stat %>
+  <%= f.text_field :thing_other_stat %>
+  <br>
+  <%= f.label :thing_occurrance_date %>
+  <%= f.datetime_select :thing_occurrance_date %>
+  <br>
+  <%= f.submit %>
+<% end %>

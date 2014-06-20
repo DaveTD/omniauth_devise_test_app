@@ -18,7 +18,6 @@ class Thing3sController < ApplicationController
   end
 
   def show
-    @thing = Thing3.find(params[:id])
   end
 
   def index
@@ -26,6 +25,8 @@ class Thing3sController < ApplicationController
   end
 
   def update
+    @thing3.update!(thing3_params)
+    redirect_to thing3_path
   end
 
   def destroy

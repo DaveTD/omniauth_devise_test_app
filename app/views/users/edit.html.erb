@@ -1,8 +1,22 @@
 <h1>Edit Page</h1>
 
 <%= form_for(@user) do |f| %>
-  <%= @user %>
-
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    </br>
+    <%= f.label :password %>
+    <%= f.password_field :password, :autocomplete => "off" %>
+    <br>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+    <br>
+    <% if f.object.encrypted_password.present? %>
+      <%= f.label :current_password %>
+    <%= f.password_field :current_password %>
+    <% end %>
+    <br>
+  <%= f.submit "Change me!" %>
 <% end %>
 
+<br>
 <%= link_to "Destroy Me.", users_path, :method => :delete %>

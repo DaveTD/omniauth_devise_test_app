@@ -18,7 +18,6 @@ class Thing1sController < ApplicationController
   end
   
   def show
-    #@thing = Thing1.find(params[:id])
   end
 
   def index
@@ -26,9 +25,8 @@ class Thing1sController < ApplicationController
   end
 
   def update
-    # check if admin, set user by param if true
-    # if not,
-    # check current user
+    @thing1.update!(thing1_params)
+    redirect_to thing1_path
   end
 
   def destroy

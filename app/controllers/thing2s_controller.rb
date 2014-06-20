@@ -18,8 +18,6 @@ class Thing2sController < ApplicationController
   end
 
   def show
-    # check userid from params
-    @thing = Thing2.find(params[:id])
   end
 
   def index
@@ -27,9 +25,8 @@ class Thing2sController < ApplicationController
   end
 
   def update
-    # check if admin, set id from params if yes
-    # if not
-    # set current user
+    @thing2.update!(thing2_params)
+    redirect_to thing2_path
   end
 
   def destroy
@@ -48,7 +45,7 @@ class Thing2sController < ApplicationController
   private
     def thing2_params
       params.require(:thing2).permit(
-        :id, :thing_id, :thing_type, :thing_name, :thing_description, :thing_equipment 
+        :id, :thing_id, :thing_type, :thing_name, :thing_description, :thing_equipment, :thing_stat
       )
     end
 
