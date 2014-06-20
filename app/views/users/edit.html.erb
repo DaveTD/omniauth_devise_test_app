@@ -1,0 +1,8 @@
+<h1>Edit Page</h1>
+
+<%= form_for(@user) do |f| %>
+  <%= @user %>
+
+<% end %>
+
+<%= link_to "Destroy Me.", users_path, :method => :delete %>

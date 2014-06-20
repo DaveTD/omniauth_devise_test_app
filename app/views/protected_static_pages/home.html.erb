@@ -1,14 +1,23 @@
 <h1>Polymorphic User Devise/Omniauth/Cancan Test</h1>
 
-<p>Logged in as: <%= link_to "#{@currentuser.email}", users_path + "/#{@currentuser.id}" %></p>
-<p>Session: <%= p "#{@user_session}" %></p>
-<p>User signed in: <%= p "#{@user_signed_in}" %></p>
-<% if @currentuser.type_type == "UserType1" %>
-<p>Thing ID: <%= p "#{@currentuser.type.thing_id}" %></p>
-<p>Thing Type: <%= p "#{@currentuser.type.thing_type}" %></p>
-<% end %>
+<p>Logged in as: <%= link_to @currentuser.email, {:controller => "users", :action => "show", :id => @currentuser.id} %></p>
+<p>Session: <%= @user_session %></p>
+<p>User signed in: <%= @user_signed_in %></p>
+<% if @currentuser.type_type == "UserType1" && !@currentuser.type.thing.nil? %>
+  <p>Thing ID: <%= link_to @currentuser.type.thing_id, {:controller => "#{@currentuser.type.thing_type.underscore.pluralize}", :action => "show", :id => @currentuser.type.thing_id } %></p>
+<p>Thing Type: <%= @currentuser.type.thing_type %></p>
 </br>
-<%= link_to "Show my UserType1 account", user_type1s_path + "/#{@currentuser.type.id}" %>
+<% end %>
+<%= link_to "Index Thing1s", thing1s_path %>
+</br>
+<%= link_to "Index Thing2s", thing2s_path %>
+</br>
+<%= link_to "Index Thing3s", thing3s_path %>
+</br>
+</br>
+<% if @currentuser.type_type == "UserType1" %>
+  <%= link_to "Show my UserType1 account", {:controller => "user_type1s", :action => "show", :id => @currentuser.type.id} %>
+<% end %>
 </br>
 <%= link_to "Index Users", users_path %>
 </br>

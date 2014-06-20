@@ -14,3 +14,5 @@
 <p>Last sign in: <%= @user.last_sign_in_ip %></p>
 <p>Created at: <%= @user.created_at %></p>
 <p>Updated at: <%= @user.updated_at %></p>
+
+<%= link_to "Update account", edit_user_path %>

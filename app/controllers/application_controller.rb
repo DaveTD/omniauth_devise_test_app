@@ -6,8 +6,9 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     if current_user.nil?
     redirect_to root_path, :alert => exception.message
-    end
+    else
     redirect_to user_home_path, :alert => exception.message
+    end
   end
 
   def after_sign_in_path_for(user)
