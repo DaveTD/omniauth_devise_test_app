@@ -107,7 +107,9 @@ class UserType1sController < ApplicationController
         :location, 
         :twitter_uid, 
         :facebook_uid, 
-        users_attributes: [:id, :email, :password, :type_id, :type_type]
+        :user_id,
+        # user_attributes: [:id, :email, :password, :type_id, :type_type]
+        user: [:id, :email, :password, :type_id, :type_type]
       )
     end
 

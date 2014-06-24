@@ -8,10 +8,12 @@ class CreateUserType1s < ActiveRecord::Migration
       t.string :name
 
       t.integer :twitter_uid
+      t.integer :facebook_uid
 
       t.timestamps
     end
 
     add_index :user_type1s, :twitter_uid, unique: true
+    add_index :user_type1s, :facebook_uid, unique: true
   end
 end

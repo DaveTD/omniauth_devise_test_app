@@ -11,7 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140514024356) do
+ActiveRecord::Schema.define(version: 20140623215207) do
+
+  create_table "admins", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "thing1s", force: true do |t|
     t.string   "thing_name"
@@ -46,10 +52,12 @@ ActiveRecord::Schema.define(version: 20140514024356) do
     t.string   "location"
     t.string   "name"
     t.integer  "twitter_uid"
+    t.integer  "facebook_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "user_type1s", ["facebook_uid"], name: "index_user_type1s_on_facebook_uid", unique: true
   add_index "user_type1s", ["twitter_uid"], name: "index_user_type1s_on_twitter_uid", unique: true
 
   create_table "user_type2s", force: true do |t|
