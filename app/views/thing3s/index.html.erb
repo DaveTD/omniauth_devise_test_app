@@ -2,7 +2,7 @@
 <table>
 <% @things.each do |thing| %>
   <tr>
-    <td>Name: <%= link_to thing.thing_name, thing3s_path + "/#{thing.id}" %></td>
+    <td>Name: <%= link_to thing.thing_name, thing3_path(thing) %></td>
     <td><%= link_to "Destroy", thing3_path(thing), :method => :delete %></td>
   </tr>
 <% end %>

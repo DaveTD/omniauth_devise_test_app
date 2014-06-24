@@ -1,7 +1,11 @@
 <h1>Users List</h1>
-
+<table>
 <% @users.each do |u| %>
-  <%= link_to "Email: #{u.email}", users_path + "/#{u.id}" %>
-  </br>
-
+  <tr>
+    <td><%= link_to u.email, user_path(u) %></td>
+    <td><%= u.type_type %></td>
+    <td><%= u.type_id %></td>
+    <td><%= link_to "Destroy", user_path(u), :method => :delete %>
+  </tr>
 <% end %>
+</table>
