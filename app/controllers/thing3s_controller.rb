@@ -30,15 +30,7 @@ class Thing3sController < ApplicationController
   end
 
   def destroy
-    # check if admin, set user by param if true
-    if current_user.type == "Admin"
-      @thing = Thing3.find(params[:id])
-      @thing.destroy!
-      @user = UserType1.find_by_thing_id_and_thing_type(params[:id], "Thing3")
-      @user.update_attributes(:thing => nil)
-      redirect_to user_home_path
-    end
-    # check current user to get id
+    @thing3.destroy!
     redirect_to user_home_path
   end
   

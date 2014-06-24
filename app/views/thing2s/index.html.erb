@@ -1,4 +1,9 @@
 <h1>Things2s index</h1>
+<table>
 <% @things.each do |thing| %>
-  <p>Name: <%= link_to thing.thing_name, thing2s_path + "/#{thing.id}" %></p>
+  <tr>
+    <td>Name: <%= link_to thing.thing_name, thing2s_path + "/#{thing.id}" %></td>
+    <td><%= link_to "Destroy", thing2_path(thing), :method => :delete %></td>
+  </tr>
 <% end %>
+</table>
