@@ -1,7 +1,7 @@
 class UserType1sController < ApplicationController
   load_resource
   include Protector
-  skip_before_filter :authenticate_user!, :only => [:create, :create_from_twitter, :new, :read, :index]
+  skip_before_filter :authenticate_user!, :only => [:create, :create_from_twitter, :create_from_facebook, :new, :read, :index]
 
   def new
     @user_type1

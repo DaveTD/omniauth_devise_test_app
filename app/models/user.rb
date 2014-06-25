@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
 
   def self.find_for_facebook_oauth(auth)
-    user1 = UserType1.where( :facebook_uid => auth.uid ).user
+    user1 = UserType1.find_by( :facebook_uid => auth.uid )
     if user1
       user1.user
     end

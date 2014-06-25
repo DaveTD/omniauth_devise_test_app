@@ -15,3 +15,10 @@
   <p>Twitter uid: <%= @usertype1.twitter_uid %></p>
   <%= link_to "Delete associated twitter account", destroy_twitter_path %>
 <% end %>
+<% if (@usertype1.facebook_uid.nil?) %>
+  <p>No facebook ID associated with this account.</p>
+  <%= link_to "Add facebook account", "/users/auth/facebook/" %>
+<% else %>
+  <p>Facebook uid: <%= @usertype1.facebook_uid %></p>
+  <%= link_to "Delete associated facebook account", destroy_facebook_path %>
+<% end %>

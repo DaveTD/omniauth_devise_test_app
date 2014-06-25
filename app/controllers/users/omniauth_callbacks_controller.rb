@@ -19,13 +19,19 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def facebook
+    # raise request.env["omniauth.auth"].to_yaml 
     @user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
 
-    if @user.persisted?
-      sign_in_and_redirect @user, :event => :authentication
+    if @user && @user.persisted?
+      sign_in_and_redirect @user
     else
-      session["devise.facebook_data"] = env["omniauth.auth"]["info"].to_hash.merge( :uid => env["omniauth.auth"].uid, :email => env["omniauth.auth"].email )
-      redirect_to create_from_facebook_path
+      session["devise.facebook_data"] = env["omniauth.auth"]["info"].to_hash.merge( "uid" => env["omniauth.auth"].uid, :email => env["omniauth.auth"].email )
+
+      if (current_user && current_user.type.facebook_uid.nil?)
+        redirect_to '/add_facebook_uid'
+      else
+        redirect_to create_from_facebook_path
+      end
     end
   end
 
